@@ -1,9 +1,12 @@
 package com.example.studyBuddy.service;
 
 import com.example.studyBuddy.entity.Note;
+import com.example.studyBuddy.entity.User;
 import com.example.studyBuddy.repository.NoteRepository;
+import com.example.studyBuddy.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -13,16 +16,22 @@ public class NoteService {
 
     private final NoteRepository noteRepository;
 
-    public Note create(Note note) {
-        return (Note) noteRepository.save(note);
+    private final UserRepository userRepository;
+
+    public Note create(Note note, String email) {
+        User user = userRepository.findByEmail(email).orElseThrow();
+        note.setUser(user);
+
+        return noteRepository.save(note);
     }
 
-    public List<Note> getAll() {
-        return noteRepository.findAll();
+    public List<Note> getAll(String email) {
+        return noteRepository.findByUserEmailOrderByIdDesc(email);
     }
 
-    public void delete(Long id) {
-        noteRepository.deleteById(id);
+    @Transactional
+    public void delete(Long id, String email) {
+        noteRepository.deleteByIdAndUserEmail(id, email);
     }
 }
 
