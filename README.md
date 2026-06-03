@@ -1,276 +1,180 @@
-# StudyBuddy - Academic Help & Resource Sharing Platform
+# StudyBuddy – Academic Collaboration Platform
 
 ![Java](https://img.shields.io/badge/Java-17-orange)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-blue)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-blue)
 ![React](https://img.shields.io/badge/React-18-61dafb)
 ![Vite](https://img.shields.io/badge/Vite-5-646cff)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-38bdf8)
 
 ---
 
 # Overview
 
-StudyBuddy is a full-stack academic collaboration platform designed to help students connect with peers, share learning resources, participate in study groups, and improve their academic performance through collaborative learning.
+StudyBuddy is a full-stack academic collaboration platform built to help students manage and share academic notes/resources in a centralized environment.
 
-The platform aims to bridge the gap between students by providing a centralized environment for:
+The project demonstrates full stack development using React.js, Spring Boot, PostgreSQL, REST APIs, JWT authentication, and layered backend architecture.
 
-- Study Group Management
-- Resource Sharing
-- Academic Discussions
-- Peer Learning
-- Progress Tracking
-- Community Engagement
+Currently implemented features include:
 
----
-
-# Problem Statement
-
-Students often struggle to:
-
-- Find reliable study partners
-- Access quality study materials
-- Collaborate effectively on academic topics
-- Track their learning progress
-- Build productive academic communities
-
-StudyBuddy addresses these challenges by providing a unified platform for academic collaboration.
+* User Registration
+* User Login
+* JWT Authentication
+* BCrypt Password Encryption
+* Notes CRUD Operations
+* REST API Integration
+* PostgreSQL Database Integration
 
 ---
 
-# Key Features
+# Tech Stack
 
-## User Management
-- User Registration
-- Secure Login
-- Profile Management
-- Role-Based Access Control
+## Frontend
 
-## Study Groups
-- Create Study Groups
-- Join Existing Groups
-- Manage Group Members
-- Group Discussions
+* React.js
+* React Router DOM
+* CSS
 
-## Resource Sharing
-- Upload Notes
-- Share PDFs
-- Download Resources
-- Resource Categorization
+## Backend
 
-## Discussions
-- Academic Q&A
-- Discussion Threads
-- Community Support
-
-## Dashboard
-- Activity Tracking
-- User Statistics
-- Learning Progress
-
----
-
-# System Architecture
-
-```text
-Frontend (React + Vite)
-          │
-          ▼
-REST APIs
-          │
-          ▼
-Spring Boot Backend
-          │
-          ▼
-Service Layer
-          │
-          ▼
-JPA / Hibernate
-          │
-          ▼
-MySQL Database
-```
-
----
-
-# Frontend Stack
-
-| Technology | Purpose |
-|------------|----------|
-| React 18 | UI Development |
-| Vite | Build Tool |
-| Tailwind CSS | Styling |
-| React Router | Routing |
-| Axios | API Calls |
-| Context API | State Management |
-
----
-
-# Backend Stack
-
-| Technology | Purpose |
-|------------|----------|
-| Java 17 | Programming Language |
-| Spring Boot | Backend Framework |
-| Spring Security | Authentication & Authorization |
-| Spring Data JPA | Database Access |
-| Hibernate | ORM |
-| MySQL | Database |
-| Maven | Dependency Management |
-
----
-
-# Security Features
-
-- JWT Authentication
-- BCrypt Password Encryption
-- Role-Based Authorization
-- Protected APIs
-- Secure Session Management
-- Input Validation
-- Exception Handling
+* Java 17
+* Spring Boot
+* Spring Security
+* JWT Authentication
+* Spring Data JPA
+* Hibernate
+* PostgreSQL
+* Lombok
+* Maven
 
 ---
 
 # Project Structure
 
 ```text
-StudyBuddy/
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   ├── hooks/
-│   │   └── utils/
+studyBuddy/
 │
 ├── backend/
 │   ├── controller/
 │   ├── service/
 │   ├── repository/
-│   ├── model/
+│   ├── entity/
 │   ├── dto/
 │   ├── security/
 │   └── config/
+│
+├── frontend/
+│   └── src/
+│       ├── pages/
+│       ├── services/
+│       └── components/
 │
 └── README.md
 ```
 
 ---
 
-# Application Flow
+# Implemented Features
 
-1. User registers an account
-2. User logs in securely
-3. User creates or joins study groups
-4. User shares academic resources
-5. Students collaborate through discussions
-6. Resources and activities are tracked
-7. Progress is monitored through dashboard analytics
+## Authentication Module
 
----
+* User Registration
+* User Login
+* JWT Token Generation
+* BCrypt Password Encryption
 
-# Database Design
+## Notes Module
 
-## Core Tables
+* Create Notes
+* Fetch All Notes
+* Delete Notes
 
-### Users
-- id
-- name
-- email
-- password
-- role
+## Backend Architecture
 
-### StudyGroups
-- id
-- group_name
-- description
-- created_by
-
-### Resources
-- id
-- title
-- file_url
-- uploaded_by
-
-### Discussions
-- id
-- title
-- content
-- created_by
-
-### GroupMembers
-- id
-- user_id
-- group_id
+* Layered Architecture
+* REST APIs
+* JPA/Hibernate Integration
+* PostgreSQL Database Connectivity
 
 ---
 
-# API Documentation
+# Backend Architecture
+
+```text
+Frontend (React)
+        ↓
+REST APIs
+        ↓
+Spring Boot Backend
+        ↓
+Service Layer
+        ↓
+Repository Layer
+        ↓
+PostgreSQL Database
+```
+
+---
+
+# API Endpoints
 
 ## Authentication APIs
 
-| Method | Endpoint | Description |
-|----------|------------|--------------|
-| POST | /api/auth/register | Register User |
-| POST | /api/auth/login | Login User |
-| GET | /api/auth/me | Current User |
-| POST | /api/auth/logout | Logout |
+| Method | Endpoint       | Description   |
+| ------ | -------------- | ------------- |
+| POST   | /auth/register | Register User |
+| POST   | /auth/login    | Login User    |
 
 ---
 
-## User APIs
+## Notes APIs
 
-| Method | Endpoint | Description |
-|----------|------------|--------------|
-| GET | /api/users | Get Users |
-| GET | /api/users/{id} | Get User |
-| PUT | /api/users/{id} | Update User |
-| DELETE | /api/users/{id} | Delete User |
-
----
-
-## Study Group APIs
-
-| Method | Endpoint | Description |
-|----------|------------|--------------|
-| POST | /api/groups | Create Group |
-| GET | /api/groups | Get Groups |
-| GET | /api/groups/{id} | Get Group |
-| POST | /api/groups/{id}/join | Join Group |
-| DELETE | /api/groups/{id} | Delete Group |
+| Method | Endpoint    | Description   |
+| ------ | ----------- | ------------- |
+| POST   | /notes      | Create Note   |
+| GET    | /notes      | Get All Notes |
+| DELETE | /notes/{id} | Delete Note   |
 
 ---
 
-## Resource APIs
+# Security Features
 
-| Method | Endpoint | Description |
-|----------|------------|--------------|
-| POST | /api/resources | Upload Resource |
-| GET | /api/resources | Get Resources |
-| GET | /api/resources/{id} | Get Resource |
-| DELETE | /api/resources/{id} | Delete Resource |
+* JWT Authentication
+* BCrypt Password Encryption
+* Protected Authentication Flow
+* Secure Password Storage
 
 ---
 
-## Discussion APIs
+# Database Tables
 
-| Method | Endpoint | Description |
-|----------|------------|--------------|
-| POST | /api/discussions | Create Discussion |
-| GET | /api/discussions | Get Discussions |
-| POST | /api/discussions/{id}/reply | Reply Discussion |
+## Users
+
+* id
+* name
+* email
+* password
+
+## Notes
+
+* id
+* title
+* content
 
 ---
 
-# ⚡ Installation
+# Installation
 
-## Backend
+## Clone Repository
 
 ```bash
 git clone https://github.com/samreen-sk/studyBuddy.git
+```
 
+---
+
+# Backend Setup
+
+```bash
 cd backend
 
 mvn clean install
@@ -278,71 +182,44 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-## Frontend
+Backend runs on:
+
+```text
+http://localhost:8080
+```
+
+---
+
+# Frontend Setup
 
 ```bash
 cd frontend
 
 npm install
 
-npm run dev
+npm start
+```
+
+Frontend runs on:
+
+```text
+http://localhost:3000
 ```
 
 ---
 
-# Environment Variables
+# PostgreSQL Configuration
 
-```env
-SPRING_DATASOURCE_URL=
-SPRING_DATASOURCE_USERNAME=
-SPRING_DATASOURCE_PASSWORD=
+Update `application.properties`:
 
-JWT_SECRET=
-JWT_EXPIRATION_MS=
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/studybuddy
+spring.datasource.username=postgres
+spring.datasource.password=yourpassword
 
-FRONTEND_URL=
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
 ```
-
----
-
-# Future Enhancements
-
-## Phase 1
-- User Authentication
-- Study Groups
-- Resource Sharing
-- Discussions
-
-## Phase 2
-- Real-Time Chat
-- Notifications
-- Friend Requests
-- Search Functionality
-
-## Phase 3
-- AI Study Assistant
-- AI Quiz Generator
-- AI Notes Summarizer
-- AI Interview Preparation
-
-## Phase 4
-- Video Calling
-- Live Collaboration Rooms
-- Whiteboard Support
-- Screen Sharing
-
-## Phase 5
-- Mobile Application
-- Push Notifications
-- Offline Access
-
-## Phase 6
-- Microservices Architecture
-- Docker Deployment
-- Kubernetes
-- Redis Caching
-- AWS Deployment
-- CI/CD Pipeline
 
 ---
 
@@ -350,13 +227,32 @@ FRONTEND_URL=
 
 This project demonstrates:
 
-- Full Stack Development
-- REST API Design
-- Database Design
-- Authentication & Security
-- Software Architecture
-- Frontend Development
-- Backend Development
-- Scalable System Design
+* Full Stack Development
+* REST API Development
+* React Frontend Integration
+* Authentication & Security
+* JPA/Hibernate
+* Database Integration
+* Layered Backend Architecture
+* CRUD Operations
+
+---
+
+# Future Enhancements
+
+Planned future features:
+
+* Study Group Management
+* Resource Sharing
+* Academic Discussions
+* File Upload Support
+* Real-Time Chat
+* Notifications
+* AI Study Assistant
+* AI Notes Summarizer
+* Docker Deployment
+* Cloud Deployment
+* Mobile Application
+* Microservices Architecture
 
 ---
