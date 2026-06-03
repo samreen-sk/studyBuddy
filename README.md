@@ -247,9 +247,6 @@ Planned future features:
 * Academic Discussions
 * File Upload Support
 * Real-Time Chat
-* Notifications
-* AI Study Assistant
-* AI Notes Summarizer
 * Docker Deployment
 * Cloud Deployment
 * Mobile Application
